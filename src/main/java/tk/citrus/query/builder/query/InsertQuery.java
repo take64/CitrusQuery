@@ -17,7 +17,7 @@ import java.util.Map;
 public class InsertQuery extends QueryStruct<InsertQuery>
 {
     /**
-     * カラム名と値の対応表
+     * カラム名と値の対応マップ
      */
     private Map<String, Object> values = new LinkedHashMap<>();
 
@@ -59,33 +59,53 @@ public class InsertQuery extends QueryStruct<InsertQuery>
         buffer.append(this.getQueryType())
                 .append(" INTO ")
                 .append(this.getTable())
-                .append(" (");
-
-        // カラム
-        StringBuffer columnBuffer = new StringBuffer("");
-        this.getValues().forEach((column, value) -> {
-            if (columnBuffer.length() > 0)
-            {
-                columnBuffer.append(", ");
-            }
-            columnBuffer.append(column);
-        });
-        buffer.append(columnBuffer.toString());
-        buffer.append(") VALUES (");
-
-        // 値
-        StringBuffer valueBuffer = new StringBuffer("");
-        this.getValues().forEach((column, value) -> {
-            if (valueBuffer.length() > 0)
-            {
-                valueBuffer.append(", ");
-            }
-            valueBuffer.append("?");
-        });
-        buffer.append(valueBuffer.toString());
-        buffer.append(")");
+                .append(" (")
+                .append(this.joinedValuesColumn())
+                .append(") VALUES (")
+                .append(this.joinedValuesPrepare())
+                .append(")");
 
         return buffer.append(";").toString();
+    }
+
+
+
+    /**
+     * カラムと値の対応マップからカラム名をカンマ区切りで連結した文字列を取得
+     *
+     * @return カラムと値の対応マップからカラム名をカンマ区切りで連結した文字列
+     */
+    private String joinedValuesColumn()
+    {
+        StringBuffer buffer = new StringBuffer("");
+        this.getValues().forEach((column, value) -> {
+            if (buffer.length() > 0)
+            {
+                buffer.append(", ");
+            }
+            buffer.append(column);
+        });
+        return buffer.toString();
+    }
+
+
+
+    /**
+     * カラムと値の対応マップから値の数の分の？をカンマ区切りで連結した文字列を取得
+     *
+     * @return カラムと値の対応マップから値の数の分の？をカンマ区切りで連結した文字列
+     */
+    private String joinedValuesPrepare()
+    {
+        StringBuffer buffer = new StringBuffer("");
+        this.getValues().forEach((column, value) -> {
+            if (buffer.length() > 0)
+            {
+                buffer.append(", ");
+            }
+            buffer.append("?");
+        });
+        return buffer.toString();
     }
 
 
