@@ -10,20 +10,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InsertQueryTest
+class UpdateQueryTest
 {
     @Test
     void 生成_SQLが生成できる()
     {
-        InsertQuery insertQuery = new InsertQuery();
+        UpdateQuery updateQuery = new UpdateQuery();
 
         // クエリを生成して取得
-        String query = insertQuery.table("employees")
-                .value("employee_id", 1000)
-                .value("name", "john")
+        String query = updateQuery.table("employees")
+                .set("name","smith")
+                .where("employee_id", 1000)
+                .where("name", "john")
                 .callQuery();
 
         // 想定通りか
-        assertEquals("INSERT INTO employees (employee_id, name) VALUES (?, ?);", query);
+        assertEquals("UPDATE employees SET name = ? WHERE employee_id = ? AND name = ?;", query);
     }
 }
