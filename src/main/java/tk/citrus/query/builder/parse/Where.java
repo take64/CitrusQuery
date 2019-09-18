@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * WHERE句
  */
-public class Where
+public class Where extends ColumnValue
 {
     /**
      * AND 接続
@@ -56,19 +56,9 @@ public class Where
     private String prepend = Where.PREPEND_AND;
 
     /**
-     * 条件カラム
-     */
-    private String column;
-
-    /**
      * 条件比較子
      */
     private String operator;
-
-    /**
-     * 条件比較値
-     */
-    private Object value;
 
 
 
@@ -175,20 +165,6 @@ public class Where
 
 
 
-    public String getColumn()
-    {
-        return column;
-    }
-
-
-
-    public void setColumn(String column)
-    {
-        this.column = column;
-    }
-
-
-
     public String getOperator()
     {
         return operator;
@@ -199,19 +175,5 @@ public class Where
     public void setOperator(String operator)
     {
         this.operator = operator;
-    }
-
-
-
-    public Object getValue()
-    {
-        return value;
-    }
-
-
-
-    public void setValue(Object value)
-    {
-        this.value = value;
     }
 }

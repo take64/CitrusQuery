@@ -20,11 +20,10 @@ class DeleteQueryTest
         // クエリを生成して取得
         String query = deleteQuery.from("employees")
                 .where("employee_id", 1000)
-                .where("name", "jhon")
+                .where("name", "john")
                 .callQuery();
 
         // 想定通りか
         assertEquals("DELETE FROM employees WHERE employee_id = ? AND name = ?;", query);
     }
-
 }
