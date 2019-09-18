@@ -59,13 +59,9 @@ class ClientTest
             client.open();
             client.close();
         }
-        catch (SQLException e)
+        catch (SQLException | QueryException e)
         {
-            fail(e.getStackTrace().toString());
-        }
-        catch (QueryException e)
-        {
-            fail(e.getStackTrace().toString());
+            fail(e.getMessage());
         }
     }
 }

@@ -14,13 +14,14 @@ public class Drivers
     /**
      * ドライバクラス SQLite
      */
-    public static String SQLITE = "org.sqlite.JDBC";
+    public static final String SQLITE = "org.sqlite.JDBC";
+
 
 
     /**
      * ドライバクラスのロード
      *
-     * @param driverClass
+     * @param driverClass ドライバクラス名
      */
     public static void load(String driverClass) throws ClassNotFoundException
     {

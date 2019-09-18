@@ -174,25 +174,25 @@ public class SelectQuery extends QueryStruct
     public String callQuery()
     {
         // 文字列作成
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
 
         // カラム文字列
         String column = Column.query(this.getColumns());
 
         // FROM句まで
-        buffer.append(this.getQueryType())
+        builder.append(this.getQueryType())
                 .append(" ")
                 .append(column)
                 .append(" FROM ")
                 .append(this.getTable());
 
         // WHERE句
-        buffer.append(Where.query(this.getWheres()));
+        builder.append(Where.query(this.getWheres()));
 
         // ORDER BY句以降
-        buffer.append(Order.query(this.getOrders()));
+        builder.append(Order.query(this.getOrders()));
 
-        return buffer.append(";").toString();
+        return builder.append(";").toString();
     }
 
 

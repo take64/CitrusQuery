@@ -19,27 +19,27 @@ public class ColumnDef
     /**
      * 型：TEXT
      */
-    public static String TEXT = "TEXT";
+    public static final String TEXT = "TEXT";
 
     /**
      * 型：NUMERIC
      */
-    public static String NUMERIC = "NUMERIC";
+    public static final String NUMERIC = "NUMERIC";
 
     /**
      * 型：INTEGER
      */
-    public static String INTEGER = "INTEGER";
+    public static final String INTEGER = "INTEGER";
 
     /**
      * 型：REAL
      */
-    public static String REAL = "REAL";
+    public static final String REAL = "REAL";
 
     /**
      * 型：BLOB
      */
-    public static String BLOB = "BLOB";
+    public static final String BLOB = "BLOB";
 
     /**
      * カラム
@@ -143,30 +143,30 @@ public class ColumnDef
             return "*";
         }
 
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         columns.forEach(column -> {
-            if (buffer.length() > 0)
+            if (builder.length() > 0)
             {
                 // カラム接続子追加
-                buffer.append(", ");
+                builder.append(", ");
             }
             // カラム追加
-            buffer.append(column.getColumn());
+            builder.append(column.getColumn());
             // 型追加
-            buffer.append(" ").append(column.getType());
+            builder.append(" ").append(column.getType());
             // NOT NULL
             if (column.isNotNull() == true)
             {
-                buffer.append(" NOT NULL");
+                builder.append(" NOT NULL");
             }
             // DEFAULT VALUE
             if (column.getDefaultValue() != null)
             {
-                buffer.append(" DEFAULT ").append(column.getDefaultValue().toString());
+                builder.append(" DEFAULT ").append(column.getDefaultValue().toString());
             }
         });
 
-        return buffer.toString();
+        return builder.toString();
     }
 
 

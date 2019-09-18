@@ -21,7 +21,7 @@ class DriversTest
         }
         catch (ClassNotFoundException e)
         {
-            fail(e.getStackTrace().toString());
+            fail(e.getMessage());
         }
         assertTrue(true);
     }

@@ -18,22 +18,22 @@ public class Index
     /**
      * プライマリキー
      */
-    public static String PRIMARY_KEY = "PRIMARY KEY";
+    public static final String PRIMARY_KEY = "PRIMARY KEY";
 
     /**
      * ユニークキー
      */
-    public static String UNIQUE_KEY = "UNIQUE";
+    public static final String UNIQUE_KEY = "UNIQUE";
 
     /**
      * インデックス
      */
-    public static String INDEX = "INDEX";
+    public static final String INDEX = "INDEX";
 
     /**
      * ユニークインデックス
      */
-    public static String UNIQUE_INDEX = "UNIQUE INDEX";
+    public static final String UNIQUE_INDEX = "UNIQUE INDEX";
 
     /**
      * インデックスタイプ
@@ -142,14 +142,14 @@ public class Index
 
         List<String> columns = ColumnDef.convertColumnStrings(index.getColumns());
 
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         // PRIMARY KEY or UNIQUE
-        buffer.append(index.getIndexType())
+        builder.append(index.getIndexType())
                 .append(" (")
                 .append(String.join(", ", columns))
                 .append(")");
 
-        return buffer.toString();
+        return builder.toString();
     }
 
 
@@ -174,9 +174,9 @@ public class Index
 
         List<String> columns = ColumnDef.convertColumnStrings(index.getColumns());
 
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         // INDEX or UNIQUE INDEX
-        buffer.append(index.getIndexType())
+        builder.append(index.getIndexType())
                 .append(" ")
                 .append(index.getName())
                 .append(" ON ")
@@ -185,7 +185,7 @@ public class Index
                 .append(String.join(", ", columns))
                 .append(")");
 
-        return buffer.toString();
+        return builder.toString();
     }
 
 

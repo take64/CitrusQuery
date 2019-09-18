@@ -18,7 +18,7 @@ class DeleteQueryTest
         DeleteQuery deleteQuery = new DeleteQuery();
 
         // クエリを生成して取得
-        String query = deleteQuery.table("employees")
+        String query = deleteQuery.from("employees")
                 .where("employee_id", 1000)
                 .where("name", "jhon")
                 .callQuery();

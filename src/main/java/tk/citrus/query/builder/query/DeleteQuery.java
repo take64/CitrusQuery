@@ -91,17 +91,17 @@ public class DeleteQuery extends QueryStruct<DeleteQuery>
     public String callQuery()
     {
         // 文字列作成
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
 
         // FROM句まで
-        buffer.append(this.getQueryType())
+        builder.append(this.getQueryType())
                 .append(" FROM ")
                 .append(this.getTable());
 
         // WHERE句
-        buffer.append(Where.query(this.getWheres()));
+        builder.append(Where.query(this.getWheres()));
 
-        return buffer.append(";").toString();
+        return builder.append(";").toString();
     }
 
 
