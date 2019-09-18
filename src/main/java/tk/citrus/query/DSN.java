@@ -1,6 +1,6 @@
 package tk.citrus.query;
 
-/**
+/*
  * @copyright   Copyright 2019, Citrus/besidesplus All Rights Reserved.
  * @author      take64 <take64@citrus.tk>
  * @license     http://www.citrus.tk/
@@ -14,7 +14,7 @@ public class DSN
     /**
      * JDBC SQLite
      */
-    public static String JDBC_SQLITE = "jdbc:sqlite:";
+    public static final String JDBC_SQLITE = "jdbc:sqlite:";
 
     /**
      * データベースプロトコル

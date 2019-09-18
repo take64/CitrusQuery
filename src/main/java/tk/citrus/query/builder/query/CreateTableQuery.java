@@ -59,9 +59,9 @@ public class CreateTableQuery extends QueryStruct<CreateTableQuery>
     /**
      * カラムの設定
      *
-     * @param column
-     * @param type
-     * @param isNotNull
+     * @param column    カラム名
+     * @param type      型
+     * @param isNotNull true:IS NOT NULL
      * @return メソッドチェイン用の自身返却
      */
     public CreateTableQuery column(String column, String type, Boolean isNotNull)
@@ -103,26 +103,26 @@ public class CreateTableQuery extends QueryStruct<CreateTableQuery>
     public String callQuery()
     {
         // 文字列作成
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
 
         // CREATE TABLE
-        buffer.append(this.getQueryType())
+        builder.append(this.getQueryType())
                 .append(" ")
                 .append(this.getTable())
                 .append(" (");
 
         // カラム文字列
-        buffer.append(ColumnDef.query(this.getColumns()));
+        builder.append(ColumnDef.query(this.getColumns()));
 
         // プライマリキー/ユニークキー
         if (this.getIndex() != null)
         {
-            buffer.append(", ").append(Index.query(this.getIndex()));
+            builder.append(", ").append(Index.query(this.getIndex()));
         }
 
-        buffer.append(")");
+        builder.append(")");
 
-        return buffer.append(";").toString();
+        return builder.append(";").toString();
     }
 
 

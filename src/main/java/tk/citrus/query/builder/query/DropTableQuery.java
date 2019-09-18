@@ -27,13 +27,13 @@ public class DropTableQuery extends QueryStruct<DropTableQuery>
     public String callQuery()
     {
         // 文字列作成
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
 
         // DROP TABLE
-        buffer.append(this.getQueryType())
+        builder.append(this.getQueryType())
                 .append(" ")
                 .append(this.getTable());
 
-        return buffer.append(";").toString();
+        return builder.append(";").toString();
     }
 }

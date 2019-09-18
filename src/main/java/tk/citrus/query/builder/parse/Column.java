@@ -30,8 +30,8 @@ public class Column
     /**
      * カラム生成
      *
-     * @param column
-     * @param alias
+     * @param column カラム名
+     * @param alias  エイリアス
      * @return 生成したカラム情報
      */
     public static Column generate(String column, String alias)
@@ -47,7 +47,7 @@ public class Column
     /**
      * カラム生成
      *
-     * @param column
+     * @param column カラム名
      * @return 生成したカラム情報
      */
     public static Column generate(String column)
@@ -60,7 +60,7 @@ public class Column
     /**
      * カラムリストを受けてSQL文字列を生成する
      *
-     * @param columns
+     * @param columns Columnリスト
      * @return ", " 区切りのカラム文字列を返す
      */
     @NotNull
@@ -72,24 +72,24 @@ public class Column
             return "*";
         }
 
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         columns.forEach(column -> {
-            if (buffer.length() > 0)
+            if (builder.length() > 0)
             {
                 // カラム接続子追加
-                buffer.append(", ");
+                builder.append(", ");
             }
             // カラム追加
-            buffer.append(column.getColumn());
+            builder.append(column.getColumn());
             if (column.getAlias() != null)
             {
                 // エイリアス追加
-                buffer.append(" AS ")
+                builder.append(" AS ")
                         .append(column.getAlias());
             }
         });
 
-        return buffer.toString();
+        return builder.toString();
     }
 
 

@@ -18,12 +18,12 @@ public class Order
     /**
      * 昇順
      */
-    public static String ORDER_ASC = "ASC";
+    public static final String ORDER_ASC = "ASC";
 
     /**
      * 降順
      */
-    public static String ORDER_DESC = "DESC";
+    public static final String ORDER_DESC = "DESC";
 
     /**
      * 順序指定カラム
@@ -40,8 +40,8 @@ public class Order
     /**
      * ORDER BY句生成
      *
-     * @param column
-     * @param order
+     * @param column カラム
+     * @param order  順序
      * @return 生成したORDER BY情報
      */
     public static Order generate(String column, String order)
@@ -70,7 +70,7 @@ public class Order
     /**
      * ORDER BY句リストを受けてSQL文字列を生成する
      *
-     * @param orders
+     * @param orders Orderリスト
      * @return " ORDER BY 〜" から始まるORDER BY句文字列を返す
      */
     @NotNull
@@ -82,23 +82,23 @@ public class Order
             return "";
         }
 
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         orders.forEach(order -> {
-            if (buffer.length() > 0)
+            if (builder.length() > 0)
             {
                 // 接続子追加
-                buffer.append(", ");
+                builder.append(", ");
             }
             // 順序追加
-            buffer.append(order.getColumn())
+            builder.append(order.getColumn())
                     .append(" ")
                     .append(order.getOrder());
         });
 
         // ORDER BY句挿入
-        buffer.insert(0, " ORDER BY ");
+        builder.insert(0, " ORDER BY ");
 
-        return buffer.toString();
+        return builder.toString();
     }
 
 

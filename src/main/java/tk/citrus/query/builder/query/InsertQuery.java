@@ -53,10 +53,10 @@ public class InsertQuery extends QueryStruct<InsertQuery>
     public String callQuery()
     {
         // 文字列作成
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
 
         // INSERT
-        buffer.append(this.getQueryType())
+        builder.append(this.getQueryType())
                 .append(" INTO ")
                 .append(this.getTable())
                 .append(" (")
@@ -65,7 +65,7 @@ public class InsertQuery extends QueryStruct<InsertQuery>
                 .append(this.joinedValuesPrepare())
                 .append(")");
 
-        return buffer.append(";").toString();
+        return builder.append(";").toString();
     }
 
 
@@ -77,15 +77,15 @@ public class InsertQuery extends QueryStruct<InsertQuery>
      */
     private String joinedValuesColumn()
     {
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         this.getValues().forEach((column, value) -> {
-            if (buffer.length() > 0)
+            if (builder.length() > 0)
             {
-                buffer.append(", ");
+                builder.append(", ");
             }
-            buffer.append(column);
+            builder.append(column);
         });
-        return buffer.toString();
+        return builder.toString();
     }
 
 
@@ -97,15 +97,15 @@ public class InsertQuery extends QueryStruct<InsertQuery>
      */
     private String joinedValuesPrepare()
     {
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         this.getValues().forEach((column, value) -> {
-            if (buffer.length() > 0)
+            if (builder.length() > 0)
             {
-                buffer.append(", ");
+                builder.append(", ");
             }
-            buffer.append("?");
+            builder.append("?");
         });
-        return buffer.toString();
+        return builder.toString();
     }
 
 

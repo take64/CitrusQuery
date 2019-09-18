@@ -18,37 +18,37 @@ public class Where
     /**
      * AND 接続
      */
-    public static String PREPEND_AND = "AND";
+    public static final String PREPEND_AND = "AND";
 
     /**
      * OR 接続
      */
-    public static String PREPEND_OR = "OR";
+    public static final String PREPEND_OR = "OR";
 
     /**
      * = 比較
      */
-    public static String OPERATOR_EQUAL = "=";
+    public static final String OPERATOR_EQUAL = "=";
 
     /**
      * != 比較
      */
-    public static String OPERATOR_NOT_EQUAL = "!=";
+    public static final String OPERATOR_NOT_EQUAL = "!=";
 
     /**
      * IN 句
      */
-    public static String OPERATOR_IN = "IN";
+    public static final String OPERATOR_IN = "IN";
 
     /**
      * NOT IN 句
      */
-    public static String OPERATOR_NOT_IN = "NOT IN";
+    public static final String OPERATOR_NOT_IN = "NOT IN";
 
     /**
      * BETWEEN 句
      */
-    public static String OPERATOR_BETWEEN = "BETWEEN";
+    public static final String OPERATOR_BETWEEN = "BETWEEN";
 
     /**
      * 条件接続子
@@ -75,10 +75,10 @@ public class Where
     /**
      * WHERE句生成
      *
-     * @param column
-     * @param operator
-     * @param value
-     * @param prepend
+     * @param column   カラム名
+     * @param operator 比較
+     * @param value    値
+     * @param prepend  条件接続子
      * @return 生成したWHERE情報
      */
     public static Where generate(String column, String operator, Object value, String prepend)
@@ -96,9 +96,9 @@ public class Where
     /**
      * WHERE句生成(=)
      *
-     * @param column
-     * @param operator
-     * @param value
+     * @param column   カラム名
+     * @param operator 比較
+     * @param value    値
      * @return 生成したWHERE情報
      */
     public static Where generate(String column, String operator, Object value)
@@ -111,8 +111,8 @@ public class Where
     /**
      * WHERE句生成(=)
      *
-     * @param column
-     * @param value
+     * @param column カラム名
+     * @param value  値
      * @return 生成したWHERE情報
      */
     public static Where generate(String column, Object value)
@@ -125,7 +125,7 @@ public class Where
     /**
      * WHERE句リストを受けてSQL文字列を生成する
      *
-     * @param wheres
+     * @param wheres Whereリスト
      * @return " WHERE 〜" から始まるWHERE句文字列を返す
      */
     @NotNull
@@ -137,26 +137,26 @@ public class Where
             return "";
         }
 
-        StringBuffer buffer = new StringBuffer("");
+        StringBuilder builder = new StringBuilder("");
         wheres.forEach(where -> {
-            if (buffer.length() > 0)
+            if (builder.length() > 0)
             {
                 // 条件接続子追加
-                buffer.append(" ")
+                builder.append(" ")
                         .append(where.getPrepend())
                         .append(" ");
             }
             // 条件追加
-            buffer.append(where.getColumn())
+            builder.append(where.getColumn())
                     .append(" ")
                     .append(where.getOperator())
                     .append(" ?");
         });
 
         // WHERE句挿入
-        buffer.insert(0, " WHERE ");
+        builder.insert(0, " WHERE ");
 
-        return buffer.toString();
+        return builder.toString();
     }
 
 

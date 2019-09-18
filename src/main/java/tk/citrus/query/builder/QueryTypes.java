@@ -14,35 +14,35 @@ public class QueryTypes
     /**
      * CREATE TABLE
      */
-    public static String CREATE_TABLE = "CREATE TABLE";
+    public static final String CREATE_TABLE = "CREATE TABLE";
 
     /**
      * DROP TABLE
      */
-    public static String DROP_TABLE = "DROP TABLE";
+    public static final String DROP_TABLE = "DROP TABLE";
 
     /**
      * ALTER TABLE
      */
-    public static String ALTER_TABLE = "ALTER TABLE";
+    public static final String ALTER_TABLE = "ALTER TABLE";
 
     /**
      * INSERT
      */
-    public static String INSERT = "INSERT";
+    public static final String INSERT = "INSERT";
 
     /**
      * UPDATE
      */
-    public static String UPDATE = "UPDATE";
+    public static final String UPDATE = "UPDATE";
 
     /**
      * DELETE
      */
-    public static String DELETE = "DELETE";
+    public static final String DELETE = "DELETE";
 
     /**
      * SELECT
      */
-    public static String SELECT = "SELECT";
+    public static final String SELECT = "SELECT";
 }
